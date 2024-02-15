@@ -64,5 +64,6 @@ export interface SourceItem {
 }
 export interface Options {
   sources?: string;
+  apiKey?: string;
 }
 export type Callback<T = void> = (data: T) => void;
