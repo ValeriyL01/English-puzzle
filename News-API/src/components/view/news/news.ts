@@ -3,7 +3,6 @@ import { NewsApi } from '../../../types';
 
 class News {
   public static draw(data: NewsApi[]): void {
-    console.log(data);
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
     const fragment: DocumentFragment = document.createDocumentFragment();

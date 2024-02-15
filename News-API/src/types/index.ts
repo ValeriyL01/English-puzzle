@@ -12,3 +12,7 @@ export interface NewsApi {
   url: string;
   urlToImage: string;
 }
+export interface SourcesAPI {
+  id: string;
+  name: string;
+}
