@@ -1,35 +1,83 @@
 body {
-    color: #fff;
-    background: #17181c;
-    font-family: sans-serif;
+  color: #fff;
+  background: #ffffff;
+  font-family: sans-serif;
 }
 
 header {
-    padding: 10px 30px;
+  padding: 0px 30px;
 }
 
-header h1 {
-    font-size: 40px;
-    font-weight: 800;
+.header-title {
+  color: black;
+  font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-shadow: 2px 3px 4px rgba(52, 51, 51, 0.4);
 }
 
 footer {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
 }
 footer .copyright a {
-    color: #444;
+  color: #444;
 }
 footer .copyright a:hover {
-    color: #555;
+  color: #222222;
 }
 footer .copyright:before {
-    content: '©';
+  content: '©';
+}
+.scroll-block {
+  overflow-y: scroll;
+}
+.scroll-block::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+.scroll-block::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-block::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #6a7d9b;
+}
+.scroll-block:hover::-webkit-scrollbar-thumb {
+  background: #6a7d9b;
+}
+.links-block {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+a {
+  list-style: none;
+  text-decoration: none;
+}
+.my-github {
+  margin-left: 3px;
+  color: #444;
+  font-size: 16px;
+}
+.my-github-link {
+  color: #444;
+  list-style: none;
+  text-decoration: none;
+}
+.my-github-link:hover {
+  color: #1e1d1d;
+}
+.rs-logo {
+  position: relative;
+  width: 50px;
+  height: 30px;
+  top: 3px;
+  margin-left: 10px;
 }
