@@ -62,8 +62,13 @@ export interface SourceItem {
   language: string;
   country: string;
 }
-export interface Options {
+export type Options = {
   sources?: string;
   apiKey?: string;
-}
+};
 export type Callback<T = void> = (data: T) => void;
+
+export enum Endpoints {
+  sources = 'sources',
+  everything = 'everything',
+}
