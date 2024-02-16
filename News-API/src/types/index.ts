@@ -63,8 +63,8 @@ export interface SourceItem {
   country: string;
 }
 export type Options = {
-  sources?: string;
-  apiKey?: string;
+  sources: string;
+  apiKey: string;
 };
 export type Callback<T = void> = (data: T) => void;
 

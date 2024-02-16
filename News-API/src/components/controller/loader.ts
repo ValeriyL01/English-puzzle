@@ -1,13 +1,13 @@
 import { Options, Callback } from '../../types';
 
 class Loader {
-  constructor(protected baseLink: string, protected options: Options) {
+  constructor(protected baseLink: string, protected options: Partial<Options>) {
     this.baseLink = baseLink;
     this.options = options;
   }
 
   public getResp<T>(
-    { endpoint, options = {} }: { endpoint: string; options?: Options },
+    { endpoint, options = {} }: { endpoint: string; options?: Partial<Options> },
     callback: Callback<T> = (): void => {
       console.error('No callback for GET response');
     },
@@ -26,7 +26,7 @@ class Loader {
     return res;
   }
 
-  private makeUrl(options: Options, endpoint: string): string {
+  private makeUrl(options: Partial<Options>, endpoint: string): string {
     const urlOptions = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
