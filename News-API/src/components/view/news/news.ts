@@ -31,7 +31,7 @@ class News {
         if (newsDescriptionTitle instanceof HTMLElement) {
           newsDescriptionTitle.textContent = item.title;
         }
-        const newsDescriptionSource = newsClone.querySelector('.news__description-source') as HTMLElement;
+        const newsDescriptionSource = newsClone.querySelector('.news__description-source');
         if (newsDescriptionSource instanceof HTMLElement) {
           newsDescriptionSource.textContent = item.source.name;
         }
