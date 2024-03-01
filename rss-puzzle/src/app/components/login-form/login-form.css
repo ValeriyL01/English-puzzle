@@ -26,12 +26,19 @@
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  width: 320px;
-  height: 320px;
+  position: relative;
+  bottom: 60px;
+
+  width: 420px;
+  height: 380px;
   border-radius: 20px;
-  background: aliceblue;
+  background: rgb(220, 237, 252);
   margin: 0 auto;
   padding: 10px;
+}
+.form-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .form {
   display: flex;
@@ -49,7 +56,7 @@ input {
   font: 0.7em sans-serif;
 }
 .button {
-  margin-top: 10px;
+  margin-top: 20px;
   border-radius: 5px;
   width: 50%;
   padding: 7px 5px;
@@ -57,4 +64,10 @@ input {
   border: 0;
   background: #ffffff;
   cursor: pointer;
+}
+
+input:required:invalid + .button {
+  color: rgb(0, 0, 0, 0.4);
+  background-color: #d7d7d7;
+  cursor: auto;
 }
