@@ -1,0 +1,60 @@
+.login-form-modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.5rem;
+
+  top: 0;
+  left: 0;
+  z-index: 20;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.1s;
+}
+
+.login-form-modal-wrapper--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.login-form-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 320px;
+  height: 320px;
+  border-radius: 20px;
+  background: aliceblue;
+  margin: 0 auto;
+  padding: 10px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+p {
+  margin: 5px;
+  font-size: 20px;
+}
+input {
+  padding: 10px 5px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  font: 0.7em sans-serif;
+}
+.button {
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 50%;
+  padding: 7px 5px;
+  font: 0.7em sans-serif;
+  border: 0;
+  background: #ffffff;
+  cursor: pointer;
+}
