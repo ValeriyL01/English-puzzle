@@ -1,5 +1,5 @@
-import createElement from './components/create-element';
-import loginFormModalWrapper from './components/login-form/login-form';
+import createElement from './components/createElement';
+import { loginFormModalWrapper } from './components/loginForm/loginForm';
 
 export default function renderApp(): void {
   const container = createElement('div', 'container');

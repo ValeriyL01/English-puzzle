@@ -1,10 +1,10 @@
-import './login-form.css';
-import createElement from '../create-element';
+import './loginForm.css';
+import createElement from '../createElement';
 
 const loginFormModalWrapper = createElement('div', 'login-form-modal-wrapper');
 const loginFormModal = createElement('div', 'login-form-modal');
 loginFormModalWrapper.append(loginFormModal);
-const form = createElement('form', 'form');
+const form = createElement('form', 'form', '', { action: '' });
 const titleForm = createElement('h2', 'form-title', 'Login');
 loginFormModal.append(titleForm, form);
 const firstNameInput = createElement('input', 'first-name-input', '', {
@@ -86,4 +86,12 @@ function handleInputValidation(): void {
 firstNameInput.addEventListener('input', handleInputValidation);
 surnameInput.addEventListener('input', handleInputValidation);
 
-export default loginFormModalWrapper;
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const firstName = firstNameInput.value;
+  const surname = surnameInput.value;
+
+  localStorage.setItem('firstName', firstName);
+  localStorage.setItem('surname', surname);
+});
+export { loginFormModalWrapper };
