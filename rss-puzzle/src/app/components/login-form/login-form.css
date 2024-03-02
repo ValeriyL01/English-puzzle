@@ -55,6 +55,9 @@ input {
   border-radius: 5px;
   font: 0.7em sans-serif;
 }
+.input-invalid {
+  border: 1px solid #ee5050;
+}
 .button {
   margin-top: 20px;
   border-radius: 5px;
@@ -66,8 +69,22 @@ input {
   cursor: pointer;
 }
 
-input:required:invalid + .button {
+.button:disabled {
   color: rgb(0, 0, 0, 0.4);
   background-color: #d7d7d7;
   cursor: auto;
+}
+
+.input-valid {
+  background-image: url(./../../../assets/images/tick.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 190px;
+  border: 1px solid #2acf33;
+}
+
+.errorMessage {
+  margin-top: 3px;
+  font-size: 14px;
+  color: #ee5050;
 }
