@@ -1,6 +1,7 @@
 import './loginForm.css';
 import createElement from '../createElement';
 import { checkUserLocalStorage } from '../localStorage';
+import { startScreenName } from '../startScreen/startScreen';
 
 const loginFormModalWrapper = createElement('div', 'login-form-modal-wrapper');
 const loginFormModal = createElement('div', 'login-form-modal');
@@ -95,5 +96,6 @@ form.addEventListener('submit', (event) => {
   localStorage.setItem('firstName', firstName);
   localStorage.setItem('surname', surname);
   checkUserLocalStorage(loginFormModalWrapper);
+  startScreenName.textContent = `${localStorage.getItem('firstName')} ${localStorage.getItem('surname')}`;
 });
 export { loginFormModalWrapper };

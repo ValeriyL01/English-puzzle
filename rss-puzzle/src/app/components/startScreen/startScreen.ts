@@ -10,6 +10,16 @@ const startScreenText = createElement(
   'start-screen-text',
   'This is an English language learning game where you have to make sentences out of words to reveal puzzle pieces with works of art.',
 );
+const startScreenContainer = createElement('div');
+const startScreenGreeting = createElement('span', 'start-screen-greeting', 'Welcome ');
+const startScreenName = createElement(
+  'span',
+  'start-screen-greeting-name',
+  `${localStorage.getItem('firstName')} ${localStorage.getItem('surname')}`,
+);
+
 startScreen.append(startScreenContent);
-startScreenContent.append(startScreenTitle, startScreenText);
-export default startScreen;
+startScreenContainer.append(startScreenGreeting, startScreenName);
+startScreenContent.append(startScreenTitle, startScreenText, startScreenContainer);
+
+export { startScreen, startScreenName };
