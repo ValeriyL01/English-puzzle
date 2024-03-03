@@ -1,5 +1,6 @@
 import './loginForm.css';
 import createElement from '../createElement';
+import { checkUserLocalStorage } from '../localStorage';
 
 const loginFormModalWrapper = createElement('div', 'login-form-modal-wrapper');
 const loginFormModal = createElement('div', 'login-form-modal');
@@ -93,5 +94,6 @@ form.addEventListener('submit', (event) => {
 
   localStorage.setItem('firstName', firstName);
   localStorage.setItem('surname', surname);
+  checkUserLocalStorage(loginFormModalWrapper);
 });
 export { loginFormModalWrapper };
