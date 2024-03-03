@@ -3,15 +3,15 @@ body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  min-height: 100vh;
+
   font-family: sans-serif;
-  padding: 0 20px;
+
   font-size: 20px;
 }
 .container {
-  background-color: antiquewhite;
-  max-width: 1920px;
-
+  position: relative;
+  background-color: rgb(173, 170, 170);
+  width: 100vw;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 20px;
 }
