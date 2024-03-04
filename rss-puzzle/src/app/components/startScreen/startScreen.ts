@@ -17,9 +17,10 @@ const startScreenName = createElement(
   'start-screen-greeting-name',
   `${localStorage.getItem('firstName')} ${localStorage.getItem('surname')}`,
 );
+const startScreenButton = createElement('div', 'start-screen-button', 'Start');
 
 startScreen.append(startScreenContent);
 startScreenContainer.append(startScreenGreeting, startScreenName);
-startScreenContent.append(startScreenTitle, startScreenText, startScreenContainer);
+startScreenContent.append(startScreenTitle, startScreenText, startScreenContainer, startScreenButton);
 
 export { startScreen, startScreenName };
