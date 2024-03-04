@@ -1,0 +1,26 @@
+.sourse-data {
+  display: flex;
+  margin-top: 20px;
+  width: 768px;
+  height: 40px;
+  background-color: aliceblue;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.22);
+}
+.word-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 40px;
+  background: #aed2ec;
+  font-size: 1.5rem;
+  padding-right: 3px;
+  padding-left: 3px;
+  border: 1px solid #0622376d;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.word-card:hover {
+  transform: scale(0.95);
+}

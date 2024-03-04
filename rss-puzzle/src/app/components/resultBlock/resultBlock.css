@@ -1,0 +1,7 @@
+.result-block {
+  display: flex;
+  width: 768px;
+  height: 420px;
+  background-color: rgb(221, 230, 235);
+  border: 1px solid #0622376d;
+}
