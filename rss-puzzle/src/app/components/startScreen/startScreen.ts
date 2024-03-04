@@ -23,4 +23,4 @@ startScreen.append(startScreenContent);
 startScreenContainer.append(startScreenGreeting, startScreenName);
 startScreenContent.append(startScreenTitle, startScreenText, startScreenContainer, startScreenButton);
 
-export { startScreen, startScreenName };
+export { startScreen, startScreenName, startScreenButton };
