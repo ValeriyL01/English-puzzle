@@ -11,7 +11,7 @@
     "format": "prettier --write ./src",
     "ci:format": "prettier --check ./src",
     "lint": "eslint ./src",
-    "prepare": "husky install",
+    "prepare": "cd .. && husky rss-puzzle/.husky",
     "pre-commit": "npm run format && npm run ci:format",
     "pre-push": "npx validate-branch-name && npm run lint",
     "deploy": "npm run build-prod && npx gh-pages -d dist -e rss-puzzle"

@@ -1,0 +1,24 @@
+.buttons-container {
+  display: flex;
+}
+
+.continue-button {
+  position: relative;
+  width: 150px;
+
+  border-radius: 5px;
+  padding: 10px 3px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  border: 0;
+  background: #59b0ed;
+  cursor: pointer;
+}
+
+.continue-button:hover {
+  background: #46a7ed;
+}
+.continue-button:active {
+  top: 2px;
+}

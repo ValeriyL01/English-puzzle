@@ -5,7 +5,7 @@
         "id": "1_01",
         "name": "Stag Hunt",
         "imageSrc": "level1/deerhunt.jpg",
-        "cutSrc": "level1/cut/deerhunt.jpg",
+        "cutSrc": "./../../../data/images/level1/cut/deerhunt.jpg",
         "author": "Niccolò dell'",
         "year": "1550-52"
       },
@@ -97,7 +97,7 @@
         "id": "1_02",
         "name": "Deer beside a Lake",
         "imageSrc": "level1/deerlake.jpg",
-        "cutSrc": "level1/cut/deerlake.jpg",
+        "cutSrc": "./../../../data/images/level1/cut/deerlake.jpg",
         "author": "Carl Frederik",
         "year": "1888"
       },
@@ -189,7 +189,7 @@
         "id": "1_03",
         "name": "Country Road with Cypresses",
         "imageSrc": "level1/abbati2.jpg",
-        "cutSrc": "level1/cut/abbati2.jpg",
+        "cutSrc": "./../../../data/images/level1/cut/abbati2.jpg",
         "author": "ABBATI, Giuseppe",
         "year": "1860"
       },
