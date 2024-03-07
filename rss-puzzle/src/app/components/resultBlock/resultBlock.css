@@ -1,7 +1,18 @@
 .result-block {
   display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   width: 768px;
   height: 420px;
   background-color: rgb(221, 230, 235);
   border: 1px solid #0622376d;
+}
+.result-block-puzzle-container {
+  display: flex;
+  height: 40px;
+  width: 768px;
+  background-color: #dde6eb;
+  border: 1px solid transparent;
 }

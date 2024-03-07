@@ -1,18 +1,27 @@
 import './sourseDataBlock.css';
 import createElement from '../createElement';
-import wordCollectionLevel1 from '../../../data/data/wordCollectionLevel1.json';
-import resultBlock from '../resultBlock/resultBlock';
+import { puzzleContainers } from '../resultBlock/resultBlock';
+import getNextTextExample from '../getData';
+import { continueButton } from '../gameButtonsBlock/gameButtonsBlock';
 
+let currentPuzzleContainerIndex = 0;
 const sourseData = createElement('div', 'sourse-data');
 
-// получение первой строчки для первой картинки
-const { textExample } = wordCollectionLevel1.rounds[0].words[0];
+continueButton.addEventListener('click', () => {
+  // Увеличиваем currentPuzzleContainerIndex до 9 и возвращаем на 0 после достижения 9
+  if (currentPuzzleContainerIndex < 9) {
+    currentPuzzleContainerIndex += 1;
+  } else {
+    currentPuzzleContainerIndex = 0;
+  }
+  continueButton.disabled = true;
+});
 
 function addClickListenerCard(wordCard: HTMLElement): void {
   const card = wordCard;
   card.addEventListener('click', () => {
     if (card.dataset.clicked === 'false') {
-      resultBlock.append(card);
+      puzzleContainers[currentPuzzleContainerIndex].append(card);
       card.dataset.clicked = 'true';
     } else {
       sourseData.prepend(card);
@@ -41,6 +50,6 @@ function createWordsBlock(sentence: string): void {
       addClickListenerCard(wordCard);
     });
 }
-
+const { textExample } = getNextTextExample();
 createWordsBlock(textExample);
-export default sourseData;
+export { sourseData, createWordsBlock };
