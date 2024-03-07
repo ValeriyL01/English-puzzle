@@ -4,6 +4,7 @@ import { checkUserLocalStorage } from './components/localStorage';
 import logoutButton from './components/logoutButton/logoutButton';
 import { startScreen, startScreenButton } from './components/startScreen/startScreen';
 import gamePages from './pages/gamePages';
+import { observeResultBlockChanges } from './components/logicVictory';
 
 const container = createElement('div', 'container');
 export default function renderApp(): void {
@@ -34,3 +35,4 @@ logoutButton.addEventListener('click', () => {
 });
 
 checkUserLocalStorage(loginFormModalWrapper);
+observeResultBlockChanges();

@@ -16,9 +16,14 @@
   cursor: pointer;
 }
 
-.continue-button:hover {
+.continue-button:not(:disabled):hover {
   background: #46a7ed;
 }
-.continue-button:active {
+
+.continue-button:not(:disabled):active {
   top: 2px;
+}
+
+.continue-button:disabled {
+  cursor: auto;
 }
