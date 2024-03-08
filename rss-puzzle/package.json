@@ -12,8 +12,8 @@
     "ci:format": "prettier --check ./src",
     "lint": "eslint ./src",
     "prepare": "cd .. && husky rss-puzzle/.husky",
-    "pre-commit": "npm run format && npm run ci:format",
-    "pre-push": "npx validate-branch-name && npm run lint",
+    "pre-commit": " cd rss-puzzle && npm run format && npm run ci:format",
+    "pre-push": "cd rss-puzzle && npx validate-branch-name && npm run lint",
     "deploy": "npm run build-prod && npx gh-pages -d dist -e rss-puzzle"
   },
   "keywords": [],
