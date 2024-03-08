@@ -1,5 +1,6 @@
 .buttons-container {
   display: flex;
+  gap: 10px;
 }
 
 .continue-button {
@@ -26,4 +27,27 @@
 
 .continue-button:disabled {
   cursor: auto;
+}
+.check-button {
+  position: relative;
+  width: 150px;
+
+  border-radius: 5px;
+  padding: 10px 3px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  border: 0;
+  background: #59b0ed;
+  cursor: pointer;
+}
+.check-button:disabled {
+  cursor: auto;
+}
+.check-button:not(:disabled):hover {
+  background: #46a7ed;
+}
+
+.check-button:not(:disabled):active {
+  top: 2px;
 }

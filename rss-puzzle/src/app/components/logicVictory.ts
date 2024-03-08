@@ -1,7 +1,8 @@
 import getNextTextExample from './getData';
 import { resultBlock, puzzleContainers } from './resultBlock/resultBlock';
-import { continueButton } from './gameButtonsBlock/gameButtonsBlock';
+import { continueButton, checkButton } from './gameButtonsBlock/gameButtonsBlock';
 import { createWordsBlock } from './sourceDataBlock/sourceDataBlock';
+import { checkWordOrder } from './checkButtonLogic';
 
 let currentPuzzleContainerIndex = 0;
 let counterGuessedLines = 0;
@@ -47,18 +48,21 @@ function showImagePuzzle(): void {
     puzzleContainerCopy.style.opacity = '0';
   });
 }
-
+function getTextStringPuzzle(wordCards: HTMLCollection): string {
+  const textArr: string[] = [];
+  const wordCardArray: HTMLElement[] = Array.from(wordCards) as HTMLElement[];
+  wordCardArray.forEach((wordCard: HTMLElement) => {
+    textArr.push(wordCard.innerText);
+  });
+  return textArr.join(' ');
+}
 function comparisonString(textData?: string): void {
   const { children }: { children: HTMLCollection } = puzzleContainers[currentPuzzleContainerIndex];
-  const textArr: string[] = [];
-  const childrenArray: HTMLElement[] = Array.from(children) as HTMLElement[];
-  childrenArray.forEach((child: HTMLElement) => {
-    textArr.push(child.innerText);
-  });
-
-  const textString = textArr.join(' ');
+  const textString = getTextStringPuzzle(children);
+  checkWordOrder(textData, children);
   if (textData === textString) {
     continueButton.disabled = false;
+    checkButton.disabled = true;
     puzzleContainers[currentPuzzleContainerIndex].style.opacity = '0.6';
     puzzleContainers[currentPuzzleContainerIndex].style.pointerEvents = 'none';
     counterGuessedLines += 1;
