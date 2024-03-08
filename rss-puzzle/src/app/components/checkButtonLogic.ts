@@ -22,10 +22,10 @@ export function checkWordOrder(textData?: string, wordCards?: HTMLCollection): v
   if (wordsData.length !== wordsString.length) {
     checkButton.disabled = true; // если пазлов не хватает  то заблокировать  кнопку check
     noMatchedContainers.forEach((wordCard) => {
-      wordCard.classList.remove('word-card--not');
+      wordCard.classList.remove('word-card--nopassed');
     });
     matchedWordsContainers.forEach((wordCard) => {
-      wordCard.classList.remove('word-card--yes');
+      wordCard.classList.remove('word-card--passed');
     });
     matchedWords = [];
     matchedWordsContainers = [];
