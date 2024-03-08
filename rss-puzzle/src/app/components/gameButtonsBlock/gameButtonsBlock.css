@@ -4,6 +4,7 @@
 }
 
 .continue-button {
+  display: none;
   position: relative;
   width: 150px;
 
@@ -16,7 +17,9 @@
   background: #59b0ed;
   cursor: pointer;
 }
-
+.continue-button--active {
+  display: block;
+}
 .continue-button:not(:disabled):hover {
   background: #46a7ed;
 }
@@ -41,6 +44,10 @@
   background: #59b0ed;
   cursor: pointer;
 }
+.continue-button--none {
+  display: none;
+}
+
 .check-button:disabled {
   cursor: auto;
 }

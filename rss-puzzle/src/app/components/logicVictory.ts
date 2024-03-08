@@ -35,6 +35,8 @@ function changePuzzleContainerIndex(): void {
 
 continueButton.addEventListener('click', () => {
   changePuzzleContainerIndex();
+  continueButton.classList.remove('continue-button--active');
+  checkButton.classList.remove('continue-button--none');
   const { textExample, imgSrc } = getNextTextExample();
   text = textExample;
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
@@ -61,6 +63,8 @@ function comparisonString(textData?: string): void {
   const textString = getTextStringPuzzle(children);
   checkWordOrder(textData, children);
   if (textData === textString) {
+    continueButton.classList.add('continue-button--active');
+    checkButton.classList.add('continue-button--none');
     continueButton.disabled = false;
     checkButton.disabled = true;
     puzzleContainers[currentPuzzleContainerIndex].style.opacity = '0.6';
