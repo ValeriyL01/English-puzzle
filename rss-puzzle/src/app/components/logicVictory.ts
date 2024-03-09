@@ -1,13 +1,19 @@
 import getNextTextExample from './getData';
 import { resultBlock, puzzleContainers } from './resultBlock/resultBlock';
-import { continueButton, checkButton } from './gameButtonsBlock/gameButtonsBlock';
+import { continueButton, checkButton, autoCompleteButton } from './gameButtonsBlock/gameButtonsBlock';
 import { createWordsBlock } from './sourceDataBlock/sourceDataBlock';
 import { checkWordOrder } from './checkButtonLogic';
 
+interface CurrentLineDataWithPuzzles {
+  textString: string;
+}
 let currentPuzzleContainerIndex = 0;
 let counterGuessedLines = 0;
 const quantityPuzzleContainers = 10;
-let text = 'The students agree they have too much homework'; // первая строчка первого раунда
+
+const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
+  textString: 'The students agree they have too much homework',
+};
 function clearPuzzleContainers(): void {
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
     while (puzzleContainer.firstChild) {
@@ -38,10 +44,11 @@ continueButton.addEventListener('click', () => {
   continueButton.classList.remove('continue-button--active');
   checkButton.classList.remove('continue-button--none');
   const { textExample, imgSrc } = getNextTextExample();
-  text = textExample;
+  currentLineDataWithPuzzles.textString = textExample;
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
-  createWordsBlock(text);
+  createWordsBlock(currentLineDataWithPuzzles.textString);
   continueButton.disabled = true;
+  autoCompleteButton.disabled = false;
 });
 function showImagePuzzle(): void {
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
@@ -67,6 +74,7 @@ function comparisonString(textData?: string): void {
     checkButton.classList.add('continue-button--none');
     continueButton.disabled = false;
     checkButton.disabled = true;
+    autoCompleteButton.disabled = true;
     puzzleContainers[currentPuzzleContainerIndex].style.opacity = '0.6';
     puzzleContainers[currentPuzzleContainerIndex].style.pointerEvents = 'none';
     counterGuessedLines += 1;
@@ -78,9 +86,9 @@ function comparisonString(textData?: string): void {
   console.log(textData, textString);
 }
 
-export function observeResultBlockChanges(): void {
+function observeResultBlockChanges(): void {
   const observer = new MutationObserver(() => {
-    comparisonString(text);
+    comparisonString(currentLineDataWithPuzzles.textString);
   });
 
   const config: MutationObserverInit = {
@@ -90,3 +98,5 @@ export function observeResultBlockChanges(): void {
 
   observer.observe(resultBlock, config);
 }
+
+export { observeResultBlockChanges, currentLineDataWithPuzzles };

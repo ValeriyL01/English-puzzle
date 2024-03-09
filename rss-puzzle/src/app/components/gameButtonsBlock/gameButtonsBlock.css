@@ -58,3 +58,21 @@
 .check-button:not(:disabled):active {
   top: 2px;
 }
+
+.auto-complete-button {
+  position: relative;
+  width: 150px;
+
+  border-radius: 5px;
+  padding: 10px 3px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  border: 0;
+  background: #db8f8f;
+
+  cursor: pointer;
+}
+.auto-complete-button:active {
+  top: 2px;
+}

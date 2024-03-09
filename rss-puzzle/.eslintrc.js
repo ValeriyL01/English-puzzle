@@ -16,7 +16,17 @@ module.exports = {
   root: true,
   rules: {
     'import/extensions': 'off',
-    'prettier/prettier': 'error',
+    'object-curly-newline': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        trailingComma: 'all',
+        tabWidth: 2,
+        semi: true,
+        singleQuote: true,
+        printWidth: 120,
+      },
+    ],
     'import/prefer-default-export': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/array-type': [
