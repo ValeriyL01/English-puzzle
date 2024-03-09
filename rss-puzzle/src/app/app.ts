@@ -5,6 +5,8 @@ import logoutButton from './components/logoutButton/logoutButton';
 import { startScreen, startScreenButton } from './components/startScreen/startScreen';
 import gamePages from './pages/gamePages';
 import { observeResultBlockChanges } from './components/logicVictory';
+import autoComplete from './components/autoCompleteButtonLogic';
+import { autoCompleteButton } from './components/gameButtonsBlock/gameButtonsBlock';
 
 const container = createElement('div', 'container');
 export default function renderApp(): void {
@@ -36,3 +38,7 @@ logoutButton.addEventListener('click', () => {
 
 checkUserLocalStorage(loginFormModalWrapper);
 observeResultBlockChanges();
+autoCompleteButton.addEventListener('click', () => {
+  autoComplete();
+  autoCompleteButton.disabled = true;
+});
