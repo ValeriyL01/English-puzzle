@@ -1,0 +1,9 @@
+.translation-sentence-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.translation-sentence {
+  font-size: 1.2rem;
+  color: rgb(78, 79, 80);
+  font-style: italic;
+}

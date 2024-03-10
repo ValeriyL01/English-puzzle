@@ -3,6 +3,7 @@ import { resultBlock, puzzleContainers } from './resultBlock/resultBlock';
 import { continueButton, checkButton, autoCompleteButton } from './gameButtonsBlock/gameButtonsBlock';
 import { createWordsBlock } from './sourceDataBlock/sourceDataBlock';
 import { checkWordOrder } from './checkButtonLogic';
+import { translationSentence } from './translationSentence/translationSentence';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
@@ -14,6 +15,9 @@ const quantityPuzzleContainers = 10;
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
   textString: 'The students agree they have too much homework',
 };
+// перевод первой строчки
+translationSentence.innerText = 'Студенты согласны, что у них слишком много домашней работы';
+
 function clearPuzzleContainers(): void {
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
     while (puzzleContainer.firstChild) {
@@ -43,8 +47,9 @@ continueButton.addEventListener('click', () => {
   changePuzzleContainerIndex();
   continueButton.classList.remove('continue-button--active');
   checkButton.classList.remove('continue-button--none');
-  const { textExample, imgSrc } = getNextTextExample();
+  const { textExample, imgSrc, textExampleTranslate } = getNextTextExample();
   currentLineDataWithPuzzles.textString = textExample;
+  translationSentence.innerText = textExampleTranslate; // перевод текущей строки
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
   createWordsBlock(currentLineDataWithPuzzles.textString);
   continueButton.disabled = true;
