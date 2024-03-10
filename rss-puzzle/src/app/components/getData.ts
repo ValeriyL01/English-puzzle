@@ -5,8 +5,14 @@ const imgUrlBase = 'https://raw.githubusercontent.com/rolling-scopes-school/rss-
 let roundIndex: number = 0;
 let wordIndex: number = 0;
 
-const getNextTextExample = (): { textExample: string; imgSrc: string } => {
-  const { textExample } = wordCollectionLevel1.rounds[roundIndex].words[wordIndex];
+interface TextExample {
+  textExample: string;
+  textExampleTranslate: string;
+  imgSrc: string;
+}
+const getNextTextExample = (): TextExample => {
+  const currentData = wordCollectionLevel1.rounds[roundIndex].words[wordIndex];
+  const { textExample, textExampleTranslate } = currentData;
   const img = wordCollectionLevel1.rounds[roundIndex].levelData.cutSrc;
 
   if (wordIndex < 9) {
@@ -21,7 +27,7 @@ const getNextTextExample = (): { textExample: string; imgSrc: string } => {
     }
   }
   const imgSrc = `${imgUrlBase}${img}`;
-  return { textExample, imgSrc };
+  return { textExample, imgSrc, textExampleTranslate };
 };
 
 export default getNextTextExample;
