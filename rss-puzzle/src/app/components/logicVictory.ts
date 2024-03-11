@@ -4,7 +4,8 @@ import { continueButton, checkButton, autoCompleteButton } from './gameButtonsBl
 import { createWordsBlock } from './sourceDataBlock/sourceDataBlock';
 import { checkWordOrder } from './checkButtonLogic';
 import { translationSentence } from './translationSentence/translationSentence';
-import { translationHintButton } from './hintButtonBlock/hintButtonBlock';
+import { translationHintButton, audioHintButton } from './hintButtonBlock/hintButtonBlock';
+import { audioSentence } from './audioSentence/audioSentence';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
@@ -85,6 +86,9 @@ function comparisonString(textData?: string): void {
     continueButton.classList.add('continue-button--active');
     checkButton.classList.add('continue-button--none');
     translationSentence.classList.remove('translation-sentence--off');
+    audioSentence.classList.remove('audio-sentence--off');
+    translationHintButton.disabled = true;
+    audioHintButton.disabled = true;
     continueButton.disabled = false;
     checkButton.disabled = true;
     autoCompleteButton.disabled = true;
