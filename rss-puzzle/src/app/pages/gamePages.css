@@ -4,4 +4,17 @@
   justify-content: center;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 768px;
+  margin: 0 auto;
+}
+.level-hint-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+@media (max-width: 780px) {
+  .game-pages {
+    max-width: 740px;
+  }
 }

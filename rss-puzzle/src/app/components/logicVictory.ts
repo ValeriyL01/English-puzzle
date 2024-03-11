@@ -4,6 +4,7 @@ import { continueButton, checkButton, autoCompleteButton } from './gameButtonsBl
 import { createWordsBlock } from './sourceDataBlock/sourceDataBlock';
 import { checkWordOrder } from './checkButtonLogic';
 import { translationSentence } from './translationSentence/translationSentence';
+import { translationHintButton } from './hintButtonBlock/hintButtonBlock';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
@@ -47,6 +48,9 @@ continueButton.addEventListener('click', () => {
   changePuzzleContainerIndex();
   continueButton.classList.remove('continue-button--active');
   checkButton.classList.remove('continue-button--none');
+  if (translationHintButton.classList.contains('translation-hint-button--off')) {
+    translationSentence.classList.add('translation-sentence--off');
+  }
   const { textExample, imgSrc, textExampleTranslate } = getNextTextExample();
   currentLineDataWithPuzzles.textString = textExample;
   translationSentence.innerText = textExampleTranslate; // перевод текущей строки
@@ -77,6 +81,7 @@ function comparisonString(textData?: string): void {
   if (textData === textString) {
     continueButton.classList.add('continue-button--active');
     checkButton.classList.add('continue-button--none');
+    translationSentence.classList.remove('translation-sentence--off');
     continueButton.disabled = false;
     checkButton.disabled = true;
     autoCompleteButton.disabled = true;
