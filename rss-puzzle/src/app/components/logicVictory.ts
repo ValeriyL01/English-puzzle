@@ -8,6 +8,7 @@ import { translationHintButton } from './hintButtonBlock/hintButtonBlock';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
+  audio: string;
 }
 let currentPuzzleContainerIndex = 0;
 let counterGuessedLines = 0;
@@ -15,6 +16,7 @@ const quantityPuzzleContainers = 10;
 
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
   textString: 'The students agree they have too much homework',
+  audio: 'https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/files/01_0001_example.mp3',
 };
 // перевод первой строчки
 translationSentence.innerText = 'Студенты согласны, что у них слишком много домашней работы';
@@ -51,7 +53,8 @@ continueButton.addEventListener('click', () => {
   if (translationHintButton.classList.contains('translation-hint-button--off')) {
     translationSentence.classList.add('translation-sentence--off');
   }
-  const { textExample, imgSrc, textExampleTranslate } = getNextTextExample();
+  const { textExample, imgSrc, textExampleTranslate, audioSrc } = getNextTextExample();
+  currentLineDataWithPuzzles.audio = audioSrc;
   currentLineDataWithPuzzles.textString = textExample;
   translationSentence.innerText = textExampleTranslate; // перевод текущей строки
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
