@@ -15,6 +15,7 @@ module.exports = {
   plugins: ['prettier', '@typescript-eslint'],
   root: true,
   rules: {
+    'max-len': ['error', { code: 120, comments: 120 }],
     'import/extensions': 'off',
     'object-curly-newline': 'off',
     'prettier/prettier': [

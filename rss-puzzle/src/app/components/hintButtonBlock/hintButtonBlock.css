@@ -1,0 +1,42 @@
+.hint-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.translation-hint-button {
+  position: relative;
+
+  width: 30px;
+  height: 30px;
+  background: #59b0ed;
+
+  border-radius: 5px;
+  padding: 3px 3px;
+
+  text-align: center;
+  font-size: 1.3rem;
+  border: 0;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.translation-hint-button::after {
+  position: relative;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(./../../../assets/images/translate.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.translation-hint-button:hover {
+  transform: scale(1.1);
+}
+.translation-hint-button:active {
+  top: 2px;
+}
+.translation-hint-button--off {
+  background: rgb(221, 230, 235);
+}
