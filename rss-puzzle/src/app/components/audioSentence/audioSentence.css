@@ -3,8 +3,8 @@
 
   width: 30px;
   height: 30px;
-  background: #59b0ed;
 
+  background: inherit;
   border-radius: 5px;
   padding: 3px 3px;
 
@@ -32,6 +32,21 @@
 .audio-sentence:active {
   top: 2px;
 }
-.audio-sentence--off {
-  background: rgb(221, 230, 235);
+
+@keyframes audioAnimation {
+  0% {
+    transform: scale(1.07);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
