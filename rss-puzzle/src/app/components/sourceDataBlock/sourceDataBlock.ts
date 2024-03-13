@@ -2,25 +2,20 @@ import './sourseDataBlock.css';
 import { PuzzleData } from '../../types/types';
 import createElement from '../createElement';
 import { puzzleContainers } from '../resultBlock/resultBlock';
-import getNextTextExample from '../getData';
 import { continueButton } from '../gameButtonsBlock/gameButtonsBlock';
 import { drag, allowDrop, drop } from '../dragAndDrop';
 
 const puzzleData: PuzzleData = {
   wordCards: [],
   currentPuzzleContainerIndex: 0,
+  counterGuessedLines: 0,
 };
 const sourseData = createElement('div', 'sourse-data');
 
 continueButton.addEventListener('click', () => {
-  // Увеличиваем currentPuzzleContainerIndex до 9 и возвращаем на 0 после достижения 9
   if (puzzleData.currentPuzzleContainerIndex < 9) {
-    puzzleData.currentPuzzleContainerIndex += 1;
-  } else {
-    puzzleData.currentPuzzleContainerIndex = 0;
+    puzzleContainers[puzzleData.currentPuzzleContainerIndex + 1].ondragover = allowDrop;
   }
-  continueButton.disabled = true;
-  puzzleContainers[puzzleData.currentPuzzleContainerIndex].ondragover = allowDrop;
 });
 
 function addClickListenerCard(wordCard: HTMLElement): void {
@@ -40,6 +35,9 @@ function addClickListenerCard(wordCard: HTMLElement): void {
 let counterWordCard = 0;
 let currentPuzzleContainer: HTMLElement;
 function createWordsBlock(sentence: string): void {
+  while (sourseData.firstChild) {
+    sourseData.removeChild(sourseData.firstChild);
+  }
   const words = sentence.split(' ');
   const widthParent = 768;
   const wordLengthInit = words.length;
@@ -74,8 +72,6 @@ function createWordsBlock(sentence: string): void {
   });
 }
 
-const { textExample } = getNextTextExample();
-createWordsBlock(textExample);
 puzzleData.wordCards.forEach((element) => {
   const card = element;
   card.ondragstart = drag;

@@ -1,7 +1,7 @@
-import getNextTextExample from './getData';
+import { getNextDataExample } from './getData';
 import { resultBlock, puzzleContainers } from './resultBlock/resultBlock';
 import { continueButton, checkButton, autoCompleteButton } from './gameButtonsBlock/gameButtonsBlock';
-import { createWordsBlock } from './sourceDataBlock/sourceDataBlock';
+import { createWordsBlock, puzzleData } from './sourceDataBlock/sourceDataBlock';
 import { checkWordOrder } from './checkButtonLogic';
 import { translationSentence } from './translationSentence/translationSentence';
 import { translationHintButton, audioHintButton } from './hintButtonBlock/hintButtonBlock';
@@ -11,8 +11,7 @@ interface CurrentLineDataWithPuzzles {
   textString: string;
   audio: string;
 }
-let currentPuzzleContainerIndex = 0;
-let counterGuessedLines = 0;
+
 const quantityPuzzleContainers = 10;
 
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
@@ -38,30 +37,36 @@ function showPuzzleContainers(): void {
   });
 }
 function changePuzzleContainerIndex(): void {
-  if (currentPuzzleContainerIndex < 9) {
-    currentPuzzleContainerIndex += 1;
+  if (puzzleData.currentPuzzleContainerIndex < 9) {
+    puzzleData.currentPuzzleContainerIndex += 1;
   } else {
-    currentPuzzleContainerIndex = 0;
+    puzzleData.currentPuzzleContainerIndex = 0;
     clearPuzzleContainers();
     showPuzzleContainers();
   }
 }
-
-continueButton.addEventListener('click', () => {
-  changePuzzleContainerIndex();
+function disableButtons(): void {
   continueButton.classList.remove('continue-button--active');
   checkButton.classList.remove('continue-button--none');
   if (translationHintButton.classList.contains('translation-hint-button--off')) {
     translationSentence.classList.add('translation-sentence--off');
   }
-  const { textExample, imgSrc, textExampleTranslate, audioSrc } = getNextTextExample();
-  currentLineDataWithPuzzles.audio = audioSrc;
-  currentLineDataWithPuzzles.textString = textExample;
-  translationSentence.innerText = textExampleTranslate; // перевод текущей строки
-  resultBlock.style.backgroundImage = `url(${imgSrc})`;
-  createWordsBlock(currentLineDataWithPuzzles.textString);
   continueButton.disabled = true;
   autoCompleteButton.disabled = false;
+}
+function updateData(audioSrc: string, textExample: string, textExampleTranslate: string, imgSrc: string): void {
+  currentLineDataWithPuzzles.audio = audioSrc;
+  currentLineDataWithPuzzles.textString = textExample;
+  translationSentence.innerText = textExampleTranslate;
+  resultBlock.style.backgroundImage = `url(${imgSrc})`;
+  disableButtons();
+}
+continueButton.addEventListener('click', () => {
+  changePuzzleContainerIndex();
+
+  const { textExample, imgSrc, textExampleTranslate, audioSrc } = getNextDataExample();
+  updateData(audioSrc, textExample, textExampleTranslate, imgSrc);
+  createWordsBlock(currentLineDataWithPuzzles.textString);
 });
 function showImagePuzzle(): void {
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
@@ -79,7 +84,7 @@ function getTextStringPuzzle(wordCards: HTMLCollection): string {
   return textArr.join(' ');
 }
 function comparisonString(textData?: string): void {
-  const { children }: { children: HTMLCollection } = puzzleContainers[currentPuzzleContainerIndex];
+  const { children }: { children: HTMLCollection } = puzzleContainers[puzzleData.currentPuzzleContainerIndex];
   const textString = getTextStringPuzzle(children);
   checkWordOrder(textData, children);
   if (textData === textString) {
@@ -92,15 +97,14 @@ function comparisonString(textData?: string): void {
     continueButton.disabled = false;
     checkButton.disabled = true;
     autoCompleteButton.disabled = true;
-    puzzleContainers[currentPuzzleContainerIndex].style.opacity = '0.6';
-    puzzleContainers[currentPuzzleContainerIndex].style.pointerEvents = 'none';
-    counterGuessedLines += 1;
-    if (counterGuessedLines >= quantityPuzzleContainers) {
+    puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.opacity = '0.6';
+    puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.pointerEvents = 'none';
+    puzzleData.counterGuessedLines += 1;
+    if (puzzleData.counterGuessedLines >= quantityPuzzleContainers) {
       showImagePuzzle();
-      counterGuessedLines = 0;
+      puzzleData.counterGuessedLines = 0;
     }
   }
-  console.log(textData, textString);
 }
 
 function observeResultBlockChanges(): void {
@@ -116,4 +120,10 @@ function observeResultBlockChanges(): void {
   observer.observe(resultBlock, config);
 }
 
-export { observeResultBlockChanges, currentLineDataWithPuzzles };
+export {
+  observeResultBlockChanges,
+  currentLineDataWithPuzzles,
+  updateData,
+  clearPuzzleContainers,
+  showPuzzleContainers,
+};
