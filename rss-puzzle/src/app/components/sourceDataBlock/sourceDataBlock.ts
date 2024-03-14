@@ -4,6 +4,7 @@ import createElement from '../createElement';
 import { puzzleContainers } from '../resultBlock/resultBlock';
 import { continueButton } from '../gameButtonsBlock/gameButtonsBlock';
 import { drag, allowDrop, drop } from '../dragAndDrop';
+import { continueButtonStatisticsPages } from '../../pages/statisticsPages';
 
 const puzzleData: PuzzleData = {
   wordCards: [],
@@ -17,7 +18,11 @@ continueButton.addEventListener('click', () => {
     puzzleContainers[puzzleData.currentPuzzleContainerIndex + 1].ondragover = allowDrop;
   }
 });
-
+continueButtonStatisticsPages.addEventListener('click', () => {
+  if (puzzleData.currentPuzzleContainerIndex < 9) {
+    puzzleContainers[puzzleData.currentPuzzleContainerIndex + 1].ondragover = allowDrop;
+  }
+});
 function addClickListenerCard(wordCard: HTMLElement): void {
   const card = wordCard;
   card.addEventListener('click', () => {

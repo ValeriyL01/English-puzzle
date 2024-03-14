@@ -3,6 +3,7 @@ import createElement from '../createElement';
 import { currentLineDataWithPuzzles } from '../logicVictory';
 import { audioHintButton, translationHintButton } from '../hintButtonBlock/hintButtonBlock';
 import { continueButton } from '../gameButtonsBlock/gameButtonsBlock';
+import { continueButtonStatisticsPages } from '../../pages/statisticsPages';
 
 const audioSentence = createElement('div', 'audio-sentence');
 
@@ -49,5 +50,11 @@ continueButton.addEventListener('click', () => {
   translationHintButton.disabled = false;
   audioHintButton.disabled = false;
 });
-
+continueButtonStatisticsPages.addEventListener('click', () => {
+  if (audioHintButton.classList.contains('audio-hint-button--off')) {
+    audioSentence.classList.add('audio-sentence--off');
+  }
+  translationHintButton.disabled = false;
+  audioHintButton.disabled = false;
+});
 export { audioSentence };

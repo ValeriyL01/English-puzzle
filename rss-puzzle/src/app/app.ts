@@ -4,7 +4,7 @@ import { checkUserLocalStorage } from './components/localStorage';
 import logoutButton from './components/logoutButton/logoutButton';
 import { startScreen, startScreenButton } from './components/startScreen/startScreen';
 import gamePages from './pages/gamePages';
-import statisticsPages from './pages/statisticsPages';
+import { statisticsPages, continueButtonStatisticsPages } from './pages/statisticsPages';
 import { observeResultBlockChanges } from './components/logicVictory';
 import autoComplete from './components/autoCompleteButtonLogic';
 import { autoCompleteButton, resultsButton } from './components/gameButtonsBlock/gameButtonsBlock';
@@ -47,6 +47,13 @@ logoutButton.addEventListener('click', () => {
 });
 resultsButton.addEventListener('click', () => {
   switchStatisticsPages(statisticsPages);
+});
+
+continueButtonStatisticsPages.addEventListener('click', () => {
+  if (container.contains(statisticsPages)) {
+    container.removeChild(statisticsPages);
+  }
+  container.append(logoutButton, gamePages);
 });
 checkUserLocalStorage(loginFormModalWrapper);
 observeResultBlockChanges();

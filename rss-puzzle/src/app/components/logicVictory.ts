@@ -7,6 +7,7 @@ import { translationSentence } from './translationSentence/translationSentence';
 import { translationHintButton, audioHintButton } from './hintButtonBlock/hintButtonBlock';
 import { audioSentence } from './audioSentence/audioSentence';
 import informationPaining from './informationPaining/inforvationPaining';
+import { continueButtonStatisticsPages } from '../pages/statisticsPages';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
@@ -66,6 +67,20 @@ function updateData(audioSrc: string, textExample: string, textExampleTranslate:
 }
 
 continueButton.addEventListener('click', () => {
+  changePuzzleContainerIndex();
+
+  const { textExample, imgSrc, textExampleTranslate, audioSrc, imgAuthor, imgName, imgYear } = getNextDataExample();
+
+  updateData(audioSrc, textExample, textExampleTranslate, imgSrc);
+  createWordsBlock(currentLineDataWithPuzzles.textString);
+  informationPaining.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
+  isLineGuessed = false;
+  puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
+    const puzzleContainerCopy = puzzleContainer;
+    puzzleContainerCopy.classList.remove('result-block-puzzle-container-active');
+  });
+});
+continueButtonStatisticsPages.addEventListener('click', () => {
   changePuzzleContainerIndex();
 
   const { textExample, imgSrc, textExampleTranslate, audioSrc, imgAuthor, imgName, imgYear } = getNextDataExample();
