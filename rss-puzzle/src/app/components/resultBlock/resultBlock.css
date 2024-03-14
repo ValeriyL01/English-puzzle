@@ -16,3 +16,9 @@
   background-color: #dde6eb;
   border: 1px solid transparent;
 }
+.result-block-puzzle-container-active {
+  transition: 1s;
+  opacity: 1;
+  pointer-events: auto;
+  background-color: '#dde6eb';
+}

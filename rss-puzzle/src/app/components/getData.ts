@@ -18,6 +18,9 @@ interface TextExample {
   textExampleTranslate: string;
   imgSrc: string;
   audioSrc: string;
+  imgName?: string;
+  imgAuthor?: string;
+  imgYear?: string;
 }
 const wordCollections = [
   wordCollectionLevel1,
@@ -49,7 +52,9 @@ const getNextDataExample = (): TextExample => {
   const currentData = wordCollections[levelIndex].rounds[roundIndex].words[wordIndex];
   const { textExample, textExampleTranslate, audioExample } = currentData;
   const img = wordCollections[levelIndex].rounds[roundIndex].levelData.cutSrc;
-
+  const imgName = wordCollections[levelIndex].rounds[roundIndex].levelData.name;
+  const imgAuthor = wordCollections[levelIndex].rounds[roundIndex].levelData.author;
+  const imgYear = wordCollections[levelIndex].rounds[roundIndex].levelData.year;
   if (wordIndex < 9) {
     wordIndex += 1;
   } else {
@@ -67,7 +72,7 @@ const getNextDataExample = (): TextExample => {
   }
   const imgSrc = `${imgUrlBase}${img}`;
   const audioSrc = `${audioUrlBase}${audioExample}`;
-  return { textExample, imgSrc, textExampleTranslate, audioSrc };
+  return { textExample, imgSrc, textExampleTranslate, audioSrc, imgName, imgAuthor, imgYear };
 };
 
 const switchLevelAndRound = (level: number, round: number): TextExample => {
@@ -96,14 +101,19 @@ selectPage.addEventListener('change', () => {
   const pageNumber = Number(selectPage.value);
 
   roundIndex = pageNumber - 1;
-
   changingDisplayedData();
+  const event = new Event('change');
+  selectPage.dispatchEvent(event);
 });
+
 selectLevel.addEventListener('change', () => {
   const levelValue = Number(selectLevel.value);
   levelIndex = levelValue - 1;
   roundIndex = 0;
   changingDisplayedData();
+
+  const event = new Event('change');
+  selectPage.dispatchEvent(event);
 });
 const { textExample } = getNextDataExample();
 createWordsBlock(textExample);

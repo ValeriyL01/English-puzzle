@@ -1,0 +1,16 @@
+.information-paining {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  width: 100%;
+  min-height: 25px;
+  text-align: center;
+  background-color: aliceblue;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.information-paining--active {
+  opacity: 1;
+}

@@ -7,6 +7,7 @@ import { translationSentenceContainer } from '../components/translationSentence/
 import { hintButtonContainer } from '../components/hintButtonBlock/hintButtonBlock';
 import { audioSentence } from '../components/audioSentence/audioSentence';
 import { selectionLevelForm } from '../components/selectionLevel/selectionLevel';
+import informationPaining from '../components/informationPaining/inforvationPaining';
 
 const gamePages = createElement('div', 'game-pages');
 const levelHintContainer = createElement('div', 'level-hint-wrapper');
@@ -16,6 +17,7 @@ gamePages.append(
   audioSentence,
   translationSentenceContainer,
   resultBlock,
+  informationPaining,
   sourseData,
   gameButtonsContainer,
 );

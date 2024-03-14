@@ -6,6 +6,7 @@ import { checkWordOrder } from './checkButtonLogic';
 import { translationSentence } from './translationSentence/translationSentence';
 import { translationHintButton, audioHintButton } from './hintButtonBlock/hintButtonBlock';
 import { audioSentence } from './audioSentence/audioSentence';
+import informationPaining from './informationPaining/inforvationPaining';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
@@ -13,7 +14,7 @@ interface CurrentLineDataWithPuzzles {
 }
 
 const quantityPuzzleContainers = 10;
-
+let isLineGuessed = false;
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
   textString: 'The students agree they have too much homework',
   audio: 'https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/files/01_0001_example.mp3',
@@ -48,6 +49,7 @@ function changePuzzleContainerIndex(): void {
 function disableButtons(): void {
   continueButton.classList.remove('continue-button--active');
   checkButton.classList.remove('continue-button--none');
+  informationPaining.classList.remove('information-paining--active');
   if (translationHintButton.classList.contains('translation-hint-button--off')) {
     translationSentence.classList.add('translation-sentence--off');
   }
@@ -61,12 +63,20 @@ function updateData(audioSrc: string, textExample: string, textExampleTranslate:
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
   disableButtons();
 }
+
 continueButton.addEventListener('click', () => {
   changePuzzleContainerIndex();
 
-  const { textExample, imgSrc, textExampleTranslate, audioSrc } = getNextDataExample();
+  const { textExample, imgSrc, textExampleTranslate, audioSrc, imgAuthor, imgName, imgYear } = getNextDataExample();
+
   updateData(audioSrc, textExample, textExampleTranslate, imgSrc);
   createWordsBlock(currentLineDataWithPuzzles.textString);
+  informationPaining.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
+  isLineGuessed = false;
+  puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
+    const puzzleContainerCopy = puzzleContainer;
+    puzzleContainerCopy.classList.remove('result-block-puzzle-container-active');
+  });
 });
 function showImagePuzzle(): void {
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
@@ -83,11 +93,12 @@ function getTextStringPuzzle(wordCards: HTMLCollection): string {
   });
   return textArr.join(' ');
 }
+
 function comparisonString(textData?: string): void {
   const { children }: { children: HTMLCollection } = puzzleContainers[puzzleData.currentPuzzleContainerIndex];
   const textString = getTextStringPuzzle(children);
   checkWordOrder(textData, children);
-  if (textData === textString) {
+  if (textData === textString && !isLineGuessed) {
     continueButton.classList.add('continue-button--active');
     checkButton.classList.add('continue-button--none');
     translationSentence.classList.remove('translation-sentence--off');
@@ -100,9 +111,16 @@ function comparisonString(textData?: string): void {
     puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.opacity = '0.6';
     puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.pointerEvents = 'none';
     puzzleData.counterGuessedLines += 1;
+    isLineGuessed = true;
     if (puzzleData.counterGuessedLines >= quantityPuzzleContainers) {
       showImagePuzzle();
       puzzleData.counterGuessedLines = 0;
+      informationPaining.classList.add('information-paining--active');
+
+      puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
+        const puzzleContainerCopy = puzzleContainer;
+        puzzleContainerCopy.classList.add('result-block-puzzle-container-active');
+      });
     }
   }
 }
