@@ -10,3 +10,34 @@
   color: rgb(224, 227, 228);
   height: 100vh;
 }
+
+.statistics-pages-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 500px;
+  height: 50%;
+  border-radius: 5px;
+  background-color: white;
+}
+.continue-button-statistic {
+  position: relative;
+  width: 150px;
+
+  border-radius: 5px;
+  padding: 10px 3px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  border: 0;
+  background: #59b0ed;
+  cursor: pointer;
+}
+.continue-button-statistic:hover {
+  background: #46a7ed;
+}
+
+.continue-button-statistic:active {
+  top: 2px;
+}
