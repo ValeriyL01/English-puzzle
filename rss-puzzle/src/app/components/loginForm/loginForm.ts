@@ -6,7 +6,7 @@ import { startScreenName } from '../startScreen/startScreen';
 const loginFormModalWrapper = createElement('div', 'login-form-modal-wrapper');
 const loginFormModal = createElement('div', 'login-form-modal');
 loginFormModalWrapper.append(loginFormModal);
-const form = createElement('form', 'form', '', { action: '' });
+const form = createElement('form', 'form-modal', '', { action: '' });
 const titleForm = createElement('h2', 'form-title', 'Login');
 loginFormModal.append(titleForm, form);
 const firstNameInput = createElement('input', 'first-name-input', '', {
