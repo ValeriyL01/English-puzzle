@@ -1,6 +1,6 @@
 import { getNextDataExample } from './getData';
 import { resultBlock, puzzleContainers } from './resultBlock/resultBlock';
-import { continueButton, checkButton, autoCompleteButton } from './gameButtonsBlock/gameButtonsBlock';
+import { continueButton, checkButton, autoCompleteButton, resultsButton } from './gameButtonsBlock/gameButtonsBlock';
 import { createWordsBlock, puzzleData } from './sourceDataBlock/sourceDataBlock';
 import { checkWordOrder } from './checkButtonLogic';
 import { translationSentence } from './translationSentence/translationSentence';
@@ -50,6 +50,7 @@ function disableButtons(): void {
   continueButton.classList.remove('continue-button--active');
   checkButton.classList.remove('continue-button--none');
   informationPaining.classList.remove('information-paining--active');
+  resultsButton.classList.remove('results-button--active');
   if (translationHintButton.classList.contains('translation-hint-button--off')) {
     translationSentence.classList.add('translation-sentence--off');
   }
@@ -116,7 +117,7 @@ function comparisonString(textData?: string): void {
       showImagePuzzle();
       puzzleData.counterGuessedLines = 0;
       informationPaining.classList.add('information-paining--active');
-
+      resultsButton.classList.add('results-button--active');
       puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
         const puzzleContainerCopy = puzzleContainer;
         puzzleContainerCopy.classList.add('result-block-puzzle-container-active');

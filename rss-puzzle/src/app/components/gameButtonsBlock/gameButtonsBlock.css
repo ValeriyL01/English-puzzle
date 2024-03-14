@@ -76,3 +76,29 @@
 .auto-complete-button:active {
   top: 2px;
 }
+.results-button {
+  position: relative;
+  width: 150px;
+  display: none;
+  border-radius: 5px;
+  padding: 10px 3px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  border: 0;
+  background: #59b0ed;
+  transition: 0.5s;
+  opacity: 0;
+  cursor: pointer;
+}
+.results-button--active {
+  display: block;
+  opacity: 1;
+}
+.results-button:hover {
+  background: #46a7ed;
+}
+
+.results-button:active {
+  top: 2px;
+}

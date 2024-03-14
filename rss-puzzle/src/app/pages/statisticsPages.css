@@ -1,0 +1,12 @@
+.statistics-pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url(./../../assets/images/sky.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: rgb(224, 227, 228);
+  height: 100vh;
+}
