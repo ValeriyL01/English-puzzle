@@ -17,8 +17,9 @@
   justify-content: center;
   flex-direction: column;
   min-width: 500px;
-  height: 50%;
+  padding: 10px;
   border-radius: 5px;
+  gap: 10px;
   background-color: white;
 }
 .continue-button-statistic {
@@ -40,4 +41,34 @@
 
 .continue-button-statistic:active {
   top: 2px;
+}
+.autocomplete-wrapper {
+  width: 80%;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #ede0e0;
+}
+
+.knows-wrapper {
+  width: 80%;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #d3e0d1;
+}
+.autocomplete-Title {
+  color: rgb(184, 73, 73);
+  margin: 5px;
+}
+.know-Title {
+  color: rgb(70, 150, 96);
+  margin: 5px;
+}
+.sentence {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+  height: 25px;
+  color: black;
+  font-size: 1rem;
 }

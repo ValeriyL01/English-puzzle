@@ -7,13 +7,22 @@ import { translationSentence } from './translationSentence/translationSentence';
 import { translationHintButton, audioHintButton } from './hintButtonBlock/hintButtonBlock';
 import { audioSentence } from './audioSentence/audioSentence';
 import informationPaining from './informationPaining/inforvationPaining';
-import { continueButtonStatisticsPages } from '../pages/statisticsPages';
+import {
+  continueButtonStatisticsPages,
+  createArrAutoCompleteSentence,
+  addAutoCompleteSentences,
+  addKnowSentences,
+} from '../pages/statisticsPages';
 
 interface CurrentLineDataWithPuzzles {
   textString: string;
   audio: string;
 }
-
+let autoCompleteSentences: string[] = [];
+const autoCompleteSentencesElements: HTMLElement[] = [];
+const knowSentencesSentencesElements: HTMLElement[] = [];
+let arrSentences: string[] = [];
+let knowSentences: string[] = [];
 const quantityPuzzleContainers = 10;
 let isLineGuessed = false;
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
@@ -80,7 +89,17 @@ continueButton.addEventListener('click', () => {
     puzzleContainerCopy.classList.remove('result-block-puzzle-container-active');
   });
 });
+
 continueButtonStatisticsPages.addEventListener('click', () => {
+  autoCompleteSentences = [];
+  arrSentences = [];
+  knowSentences = [];
+  autoCompleteSentencesElements.forEach((element) => {
+    element.remove();
+  });
+  knowSentencesSentencesElements.forEach((element) => {
+    element.remove();
+  });
   changePuzzleContainerIndex();
 
   const { textExample, imgSrc, textExampleTranslate, audioSrc, imgAuthor, imgName, imgYear } = getNextDataExample();
@@ -128,6 +147,7 @@ function comparisonString(textData?: string): void {
     puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.pointerEvents = 'none';
     puzzleData.counterGuessedLines += 1;
     isLineGuessed = true;
+    arrSentences.push(currentLineDataWithPuzzles.textString);
     if (puzzleData.counterGuessedLines >= quantityPuzzleContainers) {
       showImagePuzzle();
       puzzleData.counterGuessedLines = 0;
@@ -141,6 +161,14 @@ function comparisonString(textData?: string): void {
   }
 }
 
+autoCompleteButton.addEventListener('click', () => {
+  createArrAutoCompleteSentence(autoCompleteSentences, currentLineDataWithPuzzles.textString);
+});
+
+resultsButton.addEventListener('click', () => {
+  addAutoCompleteSentences(autoCompleteSentences, autoCompleteSentencesElements);
+  addKnowSentences(arrSentences, autoCompleteSentences, knowSentences, knowSentencesSentencesElements);
+});
 function observeResultBlockChanges(): void {
   const observer = new MutationObserver(() => {
     comparisonString(currentLineDataWithPuzzles.textString);
