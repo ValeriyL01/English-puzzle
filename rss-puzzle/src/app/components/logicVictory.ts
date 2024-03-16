@@ -23,6 +23,9 @@ const autoCompleteSentencesElements: HTMLElement[] = [];
 const knowSentencesSentencesElements: HTMLElement[] = [];
 let arrSentences: string[] = [];
 let knowSentences: string[] = [];
+let arrAutoCompleteAudio: string[] = [];
+let arrAudioSrc: string[] = [];
+let arrKnowAudioSrc: string[] = [];
 const quantityPuzzleContainers = 10;
 let isLineGuessed = false;
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
@@ -74,10 +77,25 @@ function updateData(audioSrc: string, textExample: string, textExampleTranslate:
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
   disableButtons();
 }
-
+function removeElementsStatisticsPage(): void {
+  autoCompleteSentences = [];
+  arrSentences = [];
+  knowSentences = [];
+  arrAutoCompleteAudio = [];
+  arrAudioSrc = [];
+  arrKnowAudioSrc = [];
+  autoCompleteSentencesElements.forEach((element) => {
+    element.remove();
+  });
+  knowSentencesSentencesElements.forEach((element) => {
+    element.remove();
+  });
+}
 continueButton.addEventListener('click', () => {
   changePuzzleContainerIndex();
-
+  if (informationPaining.classList.contains('information-paining--active')) {
+    removeElementsStatisticsPage();
+  }
   const { textExample, imgSrc, textExampleTranslate, audioSrc, imgAuthor, imgName, imgYear } = getNextDataExample();
 
   updateData(audioSrc, textExample, textExampleTranslate, imgSrc);
@@ -91,15 +109,7 @@ continueButton.addEventListener('click', () => {
 });
 
 continueButtonStatisticsPages.addEventListener('click', () => {
-  autoCompleteSentences = [];
-  arrSentences = [];
-  knowSentences = [];
-  autoCompleteSentencesElements.forEach((element) => {
-    element.remove();
-  });
-  knowSentencesSentencesElements.forEach((element) => {
-    element.remove();
-  });
+  removeElementsStatisticsPage();
   changePuzzleContainerIndex();
 
   const { textExample, imgSrc, textExampleTranslate, audioSrc, imgAuthor, imgName, imgYear } = getNextDataExample();
@@ -132,6 +142,7 @@ function getTextStringPuzzle(wordCards: HTMLCollection): string {
 function comparisonString(textData?: string): void {
   const { children }: { children: HTMLCollection } = puzzleContainers[puzzleData.currentPuzzleContainerIndex];
   const textString = getTextStringPuzzle(children);
+  console.log(textData);
   checkWordOrder(textData, children);
   if (textData === textString && !isLineGuessed) {
     continueButton.classList.add('continue-button--active');
@@ -148,6 +159,7 @@ function comparisonString(textData?: string): void {
     puzzleData.counterGuessedLines += 1;
     isLineGuessed = true;
     arrSentences.push(currentLineDataWithPuzzles.textString);
+    arrAudioSrc.push(currentLineDataWithPuzzles.audio);
     if (puzzleData.counterGuessedLines >= quantityPuzzleContainers) {
       showImagePuzzle();
       puzzleData.counterGuessedLines = 0;
@@ -162,12 +174,25 @@ function comparisonString(textData?: string): void {
 }
 
 autoCompleteButton.addEventListener('click', () => {
-  createArrAutoCompleteSentence(autoCompleteSentences, currentLineDataWithPuzzles.textString);
+  createArrAutoCompleteSentence(
+    autoCompleteSentences,
+    arrAutoCompleteAudio,
+    currentLineDataWithPuzzles.textString,
+    currentLineDataWithPuzzles.audio,
+  );
 });
 
 resultsButton.addEventListener('click', () => {
-  addAutoCompleteSentences(autoCompleteSentences, autoCompleteSentencesElements);
-  addKnowSentences(arrSentences, autoCompleteSentences, knowSentences, knowSentencesSentencesElements);
+  addAutoCompleteSentences(autoCompleteSentences, autoCompleteSentencesElements, arrAutoCompleteAudio);
+  addKnowSentences(
+    arrSentences,
+    autoCompleteSentences,
+    knowSentences,
+    knowSentencesSentencesElements,
+    arrAudioSrc,
+    arrAutoCompleteAudio,
+    arrKnowAudioSrc,
+  );
 });
 function observeResultBlockChanges(): void {
   const observer = new MutationObserver(() => {
