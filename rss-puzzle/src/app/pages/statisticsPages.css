@@ -108,3 +108,17 @@
 .audio-sentence-statistics:active {
   top: 2px;
 }
+.paining {
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100px;
+  height: 70px;
+  border-radius: 5px;
+  border: 1px solid #0622376d;
+}
+.paining-information {
+  color: black;
+}

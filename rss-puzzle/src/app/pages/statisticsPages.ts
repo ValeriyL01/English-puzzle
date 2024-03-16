@@ -12,8 +12,16 @@ const autocompleteWrapper = createElement('div', 'autocomplete-wrapper');
 const knowsWrapper = createElement('div', 'knows-wrapper');
 const autocompleteTitle = createElement('h2', 'autocomplete-Title', 'Auto-Complete');
 const knowTitle = createElement('h2', 'know-Title', 'I know');
+const paining = createElement('div', 'paining') as HTMLImageElement;
+const painingInformationStatistics = createElement('div', 'paining-information');
 statisticsPages.append(statisticsPagesContainer);
-statisticsPagesContainer.append(autocompleteWrapper, knowsWrapper, continueButtonStatisticsPages);
+statisticsPagesContainer.append(
+  paining,
+  painingInformationStatistics,
+  autocompleteWrapper,
+  knowsWrapper,
+  continueButtonStatisticsPages,
+);
 autocompleteWrapper.append(autocompleteTitle);
 knowsWrapper.append(knowTitle);
 
@@ -92,4 +100,6 @@ export {
   createArrAutoCompleteSentence,
   addAutoCompleteSentences,
   addKnowSentences,
+  paining,
+  painingInformationStatistics,
 };

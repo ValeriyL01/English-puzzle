@@ -12,6 +12,8 @@ import {
   createArrAutoCompleteSentence,
   addAutoCompleteSentences,
   addKnowSentences,
+  paining,
+  painingInformationStatistics,
 } from '../pages/statisticsPages';
 
 interface CurrentLineDataWithPuzzles {
@@ -75,6 +77,7 @@ function updateData(audioSrc: string, textExample: string, textExampleTranslate:
   currentLineDataWithPuzzles.textString = textExample;
   translationSentence.innerText = textExampleTranslate;
   resultBlock.style.backgroundImage = `url(${imgSrc})`;
+  paining.style.backgroundImage = `url(${imgSrc})`;
   disableButtons();
 }
 function removeElementsStatisticsPage(): void {
@@ -101,6 +104,7 @@ continueButton.addEventListener('click', () => {
   updateData(audioSrc, textExample, textExampleTranslate, imgSrc);
   createWordsBlock(currentLineDataWithPuzzles.textString);
   informationPaining.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
+  painingInformationStatistics.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
   isLineGuessed = false;
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
     const puzzleContainerCopy = puzzleContainer;
@@ -117,6 +121,7 @@ continueButtonStatisticsPages.addEventListener('click', () => {
   updateData(audioSrc, textExample, textExampleTranslate, imgSrc);
   createWordsBlock(currentLineDataWithPuzzles.textString);
   informationPaining.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
+  painingInformationStatistics.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
   isLineGuessed = false;
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
     const puzzleContainerCopy = puzzleContainer;
