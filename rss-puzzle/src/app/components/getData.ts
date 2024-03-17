@@ -6,7 +6,7 @@ import * as wordCollectionLevel5 from '../../data/data/wordCollectionLevel5.json
 import * as wordCollectionLevel6 from '../../data/data/wordCollectionLevel6.json';
 import { selectPage, selectLevel } from './selectionLevel/selectionLevel';
 import { createWordsBlock, puzzleData } from './sourceDataBlock/sourceDataBlock';
-import { updateData, clearPuzzleContainers, showPuzzleContainers } from './logicVictory';
+import { updateData, clearPuzzleContainers, showPuzzleContainers, removeElementsStatisticsPage } from './logicVictory';
 
 const imgUrlBase = 'https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/';
 const audioUrlBase = 'https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/';
@@ -91,7 +91,7 @@ function changingDisplayedData(): void {
   clearPuzzleContainers();
   showPuzzleContainers();
   createWordsBlock(textExample);
-
+  removeElementsStatisticsPage();
   puzzleData.currentPuzzleContainerIndex = 0;
   puzzleData.counterGuessedLines = 0;
   wordIndex = 1;
@@ -117,4 +117,5 @@ selectLevel.addEventListener('change', () => {
 });
 const { textExample } = getNextDataExample();
 createWordsBlock(textExample);
+
 export { getNextDataExample };

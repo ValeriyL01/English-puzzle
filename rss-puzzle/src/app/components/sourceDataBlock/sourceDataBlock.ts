@@ -61,7 +61,7 @@ function createWordsBlock(sentence: string): void {
       sourseData.append(wordCard);
       wordCard.style.width = `${averageWidth}px`;
       const wordWidth = word.length * 10;
-      const fontSize = wordWidth > widthParent / wordLengthInit ? '14px' : '18px';
+      const fontSize = wordWidth >= widthParent / wordLengthInit ? '14px' : '18px';
       wordCard.style.fontSize = fontSize;
       wordCard.setAttribute('draggable', 'true');
 
