@@ -19,3 +19,8 @@
 .button-logout:active {
   top: 32px;
 }
+@media (max-width: 1000px) {
+  .button-logout {
+    top: 10px;
+  }
+}

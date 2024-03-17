@@ -19,6 +19,7 @@ import {
 interface CurrentLineDataWithPuzzles {
   textString: string;
   audio: string;
+  isLineGuessed?: boolean;
 }
 let autoCompleteSentences: string[] = [];
 const autoCompleteSentencesElements: HTMLElement[] = [];
@@ -29,10 +30,10 @@ let arrAutoCompleteAudio: string[] = [];
 let arrAudioSrc: string[] = [];
 let arrKnowAudioSrc: string[] = [];
 const quantityPuzzleContainers = 10;
-let isLineGuessed = false;
 const currentLineDataWithPuzzles: CurrentLineDataWithPuzzles = {
   textString: 'The students agree they have too much homework',
   audio: 'https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/files/01_0001_example.mp3',
+  isLineGuessed: false,
 };
 // перевод первой строчки
 translationSentence.innerText = 'Студенты согласны, что у них слишком много домашней работы';
@@ -72,14 +73,6 @@ function disableButtons(): void {
   continueButton.disabled = true;
   autoCompleteButton.disabled = false;
 }
-function updateData(audioSrc: string, textExample: string, textExampleTranslate: string, imgSrc: string): void {
-  currentLineDataWithPuzzles.audio = audioSrc;
-  currentLineDataWithPuzzles.textString = textExample;
-  translationSentence.innerText = textExampleTranslate;
-  resultBlock.style.backgroundImage = `url(${imgSrc})`;
-  paining.style.backgroundImage = `url(${imgSrc})`;
-  disableButtons();
-}
 function removeElementsStatisticsPage(): void {
   autoCompleteSentences = [];
   arrSentences = [];
@@ -94,6 +87,16 @@ function removeElementsStatisticsPage(): void {
     element.remove();
   });
 }
+function updateData(audioSrc: string, textExample: string, textExampleTranslate: string, imgSrc: string): void {
+  currentLineDataWithPuzzles.audio = audioSrc;
+  currentLineDataWithPuzzles.textString = textExample;
+  translationSentence.innerText = textExampleTranslate;
+  resultBlock.style.backgroundImage = `url(${imgSrc})`;
+  paining.style.backgroundImage = `url(${imgSrc})`;
+  disableButtons();
+  currentLineDataWithPuzzles.isLineGuessed = false;
+}
+
 continueButton.addEventListener('click', () => {
   changePuzzleContainerIndex();
   if (informationPaining.classList.contains('information-paining--active')) {
@@ -105,7 +108,7 @@ continueButton.addEventListener('click', () => {
   createWordsBlock(currentLineDataWithPuzzles.textString);
   informationPaining.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
   painingInformationStatistics.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
-  isLineGuessed = false;
+  currentLineDataWithPuzzles.isLineGuessed = false;
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
     const puzzleContainerCopy = puzzleContainer;
     puzzleContainerCopy.classList.remove('result-block-puzzle-container-active');
@@ -122,7 +125,7 @@ continueButtonStatisticsPages.addEventListener('click', () => {
   createWordsBlock(currentLineDataWithPuzzles.textString);
   informationPaining.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
   painingInformationStatistics.innerText = `${imgAuthor} — ${imgName} (${imgYear} year)`;
-  isLineGuessed = false;
+  currentLineDataWithPuzzles.isLineGuessed = false;
   puzzleContainers.forEach((puzzleContainer: HTMLElement) => {
     const puzzleContainerCopy = puzzleContainer;
     puzzleContainerCopy.classList.remove('result-block-puzzle-container-active');
@@ -147,9 +150,9 @@ function getTextStringPuzzle(wordCards: HTMLCollection): string {
 function comparisonString(textData?: string): void {
   const { children }: { children: HTMLCollection } = puzzleContainers[puzzleData.currentPuzzleContainerIndex];
   const textString = getTextStringPuzzle(children);
-  console.log(textData);
+  console.log(textData, ':and: ', textString);
   checkWordOrder(textData, children);
-  if (textData === textString && !isLineGuessed) {
+  if (textData === textString && !currentLineDataWithPuzzles.isLineGuessed) {
     continueButton.classList.add('continue-button--active');
     checkButton.classList.add('continue-button--none');
     translationSentence.classList.remove('translation-sentence--off');
@@ -162,7 +165,7 @@ function comparisonString(textData?: string): void {
     puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.opacity = '0.6';
     puzzleContainers[puzzleData.currentPuzzleContainerIndex].style.pointerEvents = 'none';
     puzzleData.counterGuessedLines += 1;
-    isLineGuessed = true;
+    currentLineDataWithPuzzles.isLineGuessed = true;
     arrSentences.push(currentLineDataWithPuzzles.textString);
     arrAudioSrc.push(currentLineDataWithPuzzles.audio);
     if (puzzleData.counterGuessedLines >= quantityPuzzleContainers) {
@@ -218,4 +221,5 @@ export {
   updateData,
   clearPuzzleContainers,
   showPuzzleContainers,
+  removeElementsStatisticsPage,
 };
