@@ -32,12 +32,15 @@ module.exports = {
       filename: '[name].css',
     }),
     new CopyPlugin({
-      patterns: [{from: './public', to: './assets/'}],
+      patterns: [
+        { from: './public', to: './assets/' },
+        { from: './src/assets/images', to: './assets/images' },
+      ],
     }),
   ],
   module: {
     rules: [
-      {test: /\.ts$/i, use: 'ts-loader'},
+      { test: /\.ts$/i, use: 'ts-loader' },
       {
         test: /\.html$/i,
         loader: 'html-loader',
@@ -82,9 +85,9 @@ module.exports = {
       {
         test: /\.(jpe?g|webp|png|gif|svg)$/i,
         type: 'asset/resource',
-        // generator: {
-        //   filename: 'assets/img/[name][ext]',
-        // },
+        generator: {
+          filename: 'assets/images/[name][ext]',
+        },
       },
       {
         test: /\.(ogg|mp3|wav|mpe?g)$/i,
