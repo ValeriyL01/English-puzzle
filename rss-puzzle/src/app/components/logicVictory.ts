@@ -150,7 +150,6 @@ function getTextStringPuzzle(wordCards: HTMLCollection): string {
 function comparisonString(textData?: string): void {
   const { children }: { children: HTMLCollection } = puzzleContainers[puzzleData.currentPuzzleContainerIndex];
   const textString = getTextStringPuzzle(children);
-  console.log(textData, ':and: ', textString);
   checkWordOrder(textData, children);
   if (textData === textString && !currentLineDataWithPuzzles.isLineGuessed) {
     continueButton.classList.add('continue-button--active');
