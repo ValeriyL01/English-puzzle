@@ -1,6 +1,6 @@
 #               English-puzzle
 ## Description
-###### Is an interactive mini-game aimed at enhancing English language skills. Players assemble sentences from jumbled words, inspired by Lingualeo's Phrase Constructor training. The game integrates various levels of difficulty, hint options, and a unique puzzle-like experience with artwork.
+ Is an interactive mini-game aimed at enhancing English language skills. Players assemble sentences from jumbled words, inspired by Lingualeo's Phrase Constructor training. The game integrates various levels of difficulty, hint options, and a unique puzzle-like experience with artwork.
  ## Links
 [link to deploy](https://rolling-scopes-school.github.io/valeriyl01-JSFE2023Q4/rss-puzzle/)
 ## Tech Stack
